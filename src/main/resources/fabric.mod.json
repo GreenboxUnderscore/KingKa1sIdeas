@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "kingka1sideas",
+  "version": "${version}",
+
+  "name": "KingKa1sIdeas",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/greenboxunderscore"
+  },
+
+  "license": "MIT",
+  "icon": "assets/kingka1sideas/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.kingka1sideas.KingKa1sIdeasMod"
+    ]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.11",
+    "fabric-api": "*",
+    "minecraft": "~1.19.2",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

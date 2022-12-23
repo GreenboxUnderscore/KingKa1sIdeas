@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    "  H",
+    "  S"
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:diamond"
+    },
+    "H": {
+      "item": "kingka1sideas:leather_handle"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "kingka1sideas:diamond_scythe",
+    "count": 1
+  }
+}
