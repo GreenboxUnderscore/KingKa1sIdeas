@@ -9,7 +9,7 @@ import net.minecraft.world.gen.placementmodifier.*;
 import java.util.List;
 
 public class KingKa1sPlacedFeatures {
-    public static final RegistryEntry<PlacedFeature> SHADOW_GEM_PLACE;
+    public static final RegistryEntry<PlacedFeature> SHADOW_GEM_PLACE = PlacedFeatures.register("shadow_gem_placed", KingKa1sConfiguredFeatures.SHADOW_GEM, modifiersWithCount(7, HeightRangePlacementModifier.uniform(YOffset.aboveBottom(-80), YOffset.aboveBottom(80))));
 
     public KingKa1sPlacedFeatures() {
     }
@@ -24,10 +24,6 @@ public class KingKa1sPlacedFeatures {
 
     private static List<PlacementModifier> modifiersWithRarity(int chance, PlacementModifier heightModifier) {
         return modifiers(RarityFilterPlacementModifier.of(chance), heightModifier);
-    }
-
-    static {
-        SHADOW_GEM_PLACE = PlacedFeatures.register("shadow_gem_placed", KingKa1sConfiguredFeatures.SHADOW_GEM, modifiersWithCount(7, HeightRangePlacementModifier.uniform(YOffset.aboveBottom(-80), YOffset.aboveBottom(80))));
     }
 }
 

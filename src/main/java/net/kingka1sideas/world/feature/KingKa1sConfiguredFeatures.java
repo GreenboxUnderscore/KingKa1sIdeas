@@ -12,14 +12,6 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 import java.util.List;
 
 public class KingKa1sConfiguredFeatures {
-    public static final List<OreFeatureConfig.Target> END_SHADOW_BLOCK;
-    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> SHADOW_GEM;
-
-    public KingKa1sConfiguredFeatures() {
-    }
-
-    static {
-        END_SHADOW_BLOCK = List.of(OreFeatureConfig.createTarget(new BlockMatchRuleTest(Blocks.END_STONE), KingKa1sBlocks.END_SHADOW_GEM_BLOCK.getDefaultState()));
-        SHADOW_GEM = ConfiguredFeatures.register("shadow_gem", Feature.ORE, new OreFeatureConfig(END_SHADOW_BLOCK, 4));
-    }
+    public static final List<OreFeatureConfig.Target> END_SHADOW_BLOCK = List.of(OreFeatureConfig.createTarget(new BlockMatchRuleTest(Blocks.END_STONE), KingKa1sBlocks.END_SHADOW_GEM_BLOCK.getDefaultState()));
+    public static final RegistryEntry<ConfiguredFeature<OreFeatureConfig, ?>> SHADOW_GEM = ConfiguredFeatures.register("shadow_gem", Feature.ORE, new OreFeatureConfig(END_SHADOW_BLOCK, 4));
 }

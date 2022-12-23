@@ -10,11 +10,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class KingKa1sItems {
-    public static final Item KATANA_HANDLE;
-    public static final Item SHADOW_INGOT;
-    public static final Item SHADOW_GEM;
-    public static final Item LEATHER_HANDLE;
-    public static final Item GOLDEN_BAKED_POTATO;
+    public static final Item KATANA_HANDLE = new Item((new FabricItemSettings()).group(ItemGroup.MISC));
+    public static final Item SHADOW_INGOT = new Item((new FabricItemSettings()).fireproof().group(ItemGroup.MATERIALS));
+    public static final Item SHADOW_GEM = new Item((new FabricItemSettings()).fireproof().group(ItemGroup.MATERIALS));
+    public static final Item LEATHER_HANDLE = new Item((new FabricItemSettings()).group(ItemGroup.MATERIALS));
+    public static final Item GOLDEN_BAKED_POTATO = new Item((new FabricItemSettings()).group(ItemGroup.FOOD).food((new FoodComponent.Builder().hunger(8).saturationModifier(8.0F).alwaysEdible().statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 2), 1.0F).build())));
 
     public KingKa1sItems() {
     }
@@ -25,13 +25,5 @@ public class KingKa1sItems {
         Registry.register(Registry.ITEM, new Identifier("kingka1sideas", "golden_baked_potato"), GOLDEN_BAKED_POTATO);
         Registry.register(Registry.ITEM, new Identifier("kingka1sideas", "shadow_gem"), SHADOW_GEM);
         Registry.register(Registry.ITEM, new Identifier("kingka1sideas", "shadow_ingot"), SHADOW_INGOT);
-    }
-
-    static {
-        KATANA_HANDLE = new Item((new FabricItemSettings()).group(ItemGroup.MISC));
-        SHADOW_INGOT = new Item((new FabricItemSettings()).fireproof().group(ItemGroup.MATERIALS));
-        SHADOW_GEM = new Item((new FabricItemSettings()).fireproof().group(ItemGroup.MATERIALS));
-        LEATHER_HANDLE = new Item((new FabricItemSettings()).group(ItemGroup.MATERIALS));
-        GOLDEN_BAKED_POTATO = new Item((new FabricItemSettings()).group(ItemGroup.FOOD).food((new FoodComponent.Builder().hunger(8).saturationModifier(8.0F).alwaysEdible().statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 2), 1.0F).build())));
-    }
+        }
 }

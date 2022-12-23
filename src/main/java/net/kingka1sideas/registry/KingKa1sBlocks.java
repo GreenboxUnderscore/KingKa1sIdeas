@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class KingKa1sBlocks {
-    public static final Block END_SHADOW_GEM_BLOCK;
+    public static final Block END_SHADOW_GEM_BLOCK= new Block(FabricBlockSettings.of(Material.METAL).requiresTool().nonOpaque().strength(30.0F, 1200.0F).sounds(BlockSoundGroup.ANCIENT_DEBRIS));
 
     public KingKa1sBlocks() {
     }
@@ -20,10 +20,6 @@ public class KingKa1sBlocks {
     public static void load() {
         Registry.register(Registry.BLOCK, new Identifier(KingKa1sIdeasMod.MODID, "end_shadow_gem_block"), END_SHADOW_GEM_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(KingKa1sIdeasMod.MODID, "end_shadow_gem_block"), new BlockItem(END_SHADOW_GEM_BLOCK, (new FabricItemSettings()).group(ItemGroup.MATERIALS)));
-    }
-
-    static {
-        END_SHADOW_GEM_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).requiresTool().nonOpaque().strength(30.0F, 1200.0F).sounds(BlockSoundGroup.ANCIENT_DEBRIS));
     }
 }
 
