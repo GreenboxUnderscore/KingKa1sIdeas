@@ -2,7 +2,8 @@ package net.kingka1sideas.registry;
 
 import net.kingka1sideas.KingKa1sIdeasMod;
 import net.kingka1sideas.items.tools.KingKa1sToolMaterial;
-import net.kingka1sideas.items.weapons.*;
+import net.kingka1sideas.items.weapons.SpeedBoostWeapon;
+import net.kingka1sideas.items.weapons.StrengthBoostWeapon;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SwordItem;
