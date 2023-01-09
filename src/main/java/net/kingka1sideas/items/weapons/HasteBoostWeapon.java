@@ -20,7 +20,7 @@ public class HasteBoostWeapon extends SwordItem {
     }
 
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("Press Shift for Strength"));
+        tooltip.add(Text.translatable("Press Shift for Haste"));
     }
 
     public void inventoryTick(ItemStack itemstack, World world, Entity entity, int slot, boolean selected) {
