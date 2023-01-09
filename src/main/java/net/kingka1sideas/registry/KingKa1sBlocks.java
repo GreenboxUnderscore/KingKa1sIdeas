@@ -13,7 +13,6 @@ import net.minecraft.util.registry.Registry;
 
 public class KingKa1sBlocks {
     public static final Block END_SHADOW_GEM_BLOCK= new Block(FabricBlockSettings.of(Material.METAL).requiresTool().nonOpaque().strength(30.0F, 1200.0F).sounds(BlockSoundGroup.ANCIENT_DEBRIS));
-
     public KingKa1sBlocks() {
     }
 

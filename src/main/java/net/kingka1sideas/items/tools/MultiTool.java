@@ -39,65 +39,65 @@ public class MultiTool extends PickaxeItem implements AxeItemAccessor, ShovelIte
     }
 
     @Override
-        public float getMiningSpeedMultiplier(ItemStack itemstack, BlockState blockstate) {
-            return 12f;
-        }
+    public float getMiningSpeedMultiplier(ItemStack itemstack, BlockState blockstate) {
+            return this.getMaterial().getMiningSpeedMultiplier();
+    }
 
-        @Override
-        public boolean isSuitableFor(BlockState blockstate) {
-            int i = this.getMaterial().getMiningLevel();
-            if (i < 3 && blockstate.isIn(BlockTags.NEEDS_DIAMOND_TOOL)) {
-                return false;
-            } else if (i < 2 && blockstate.isIn(BlockTags.NEEDS_IRON_TOOL)) {
-                return false;
-            } else {
-                return (i < 1 || !blockstate.isIn(BlockTags.NEEDS_STONE_TOOL)) && (blockstate.isIn(BlockTags.AXE_MINEABLE) || blockstate.isIn(BlockTags.HOE_MINEABLE)
+    @Override
+    public boolean isSuitableFor(BlockState blockstate) {
+        int i = this.getMaterial().getMiningLevel();
+        if (i < 3 && blockstate.isIn(BlockTags.NEEDS_DIAMOND_TOOL)) {
+            return false;
+        } else if (i < 2 && blockstate.isIn(BlockTags.NEEDS_IRON_TOOL)) {
+            return false;
+        } else {
+            return (i < 1 && blockstate.isIn(BlockTags.NEEDS_STONE_TOOL)) || (blockstate.isIn(BlockTags.AXE_MINEABLE) || blockstate.isIn(BlockTags.HOE_MINEABLE)
                         || blockstate.isIn(BlockTags.PICKAXE_MINEABLE) || blockstate.isIn(BlockTags.SHOVEL_MINEABLE));
-            }
+        }
+    }
+
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity entity, LivingEntity sourceentity) {
+        stack.damage(1, sourceentity, i -> i.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+        return true;
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        World world = context.getWorld();
+        BlockPos blockPos = context.getBlockPos();
+        PlayerEntity playerEntity = context.getPlayer();
+        BlockState blockState = world.getBlockState(blockPos);
+
+        Optional<BlockState> optional = this.getStrippedState(blockState);
+        Optional<BlockState> optional2 = Oxidizable.getDecreasedOxidationState(blockState);
+        Optional<BlockState> optional3 = Optional.ofNullable((Block) ((BiMap<?, ?>) HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get()).get(blockState.getBlock())).map((waxedBlock) -> waxedBlock.getStateWithProperties(blockState));
+        Optional<BlockState> optional4 = Optional.empty();
+        ItemStack itemStack = context.getStack();
+
+        if (optional.isPresent()) {
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            optional4 = optional;
+        } else if (optional2.isPresent()) {
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.syncWorldEvent(playerEntity, 3005, blockPos, 0);
+            optional4 = optional2;
+        } else if (optional3.isPresent()) {
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_WAX_OFF, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.syncWorldEvent(playerEntity, 3004, blockPos, 0);
+            optional4 = optional3;
         }
 
-        @Override
-        public boolean postHit(ItemStack stack, LivingEntity entity, LivingEntity sourceentity) {
-            stack.damage(1, sourceentity, i -> i.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-            return true;
-        }
-
-        @Override
-        public ActionResult useOnBlock(ItemUsageContext context) {
-            World world = context.getWorld();
-            BlockPos blockPos = context.getBlockPos();
-            PlayerEntity playerEntity = context.getPlayer();
-            BlockState blockState = world.getBlockState(blockPos);
-
-            Optional<BlockState> optional = this.getStrippedState(blockState);
-            Optional<BlockState> optional2 = Oxidizable.getDecreasedOxidationState(blockState);
-            Optional<BlockState> optional3 = Optional.ofNullable((Block) ((BiMap<?, ?>) HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get()).get(blockState.getBlock())).map((waxedBlock) -> waxedBlock.getStateWithProperties(blockState));
-            Optional<BlockState> optional4 = Optional.empty();
-            ItemStack itemStack = context.getStack();
-
-            if (optional.isPresent()) {
-                world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                optional4 = optional;
-            } else if (optional2.isPresent()) {
-                world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.syncWorldEvent(playerEntity, 3005, blockPos, 0);
-                optional4 = optional2;
-            } else if (optional3.isPresent()) {
-                world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_WAX_OFF, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.syncWorldEvent(playerEntity, 3004, blockPos, 0);
-                optional4 = optional3;
+        if (optional4.isPresent()) {
+            if (playerEntity instanceof ServerPlayerEntity) {
+                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
             }
 
-            if (optional4.isPresent()) {
-                if (playerEntity instanceof ServerPlayerEntity) {
-                    Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
-                }
-
-                world.setBlockState(blockPos, optional4.get(), 11);
-                world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, optional4.get()));
-                if (playerEntity != null) {
-                    itemStack.damage(1, playerEntity, (p) -> p.sendToolBreakStatus(context.getHand()));
-                }
+            world.setBlockState(blockPos, optional4.get(), 11);
+            world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, optional4.get()));
+            if (playerEntity != null) {
+                itemStack.damage(1, playerEntity, (p) -> p.sendToolBreakStatus(context.getHand()));
+            }
 
                 return ActionResult.success(world.isClient);
             } else {
@@ -147,11 +147,12 @@ public class MultiTool extends PickaxeItem implements AxeItemAccessor, ShovelIte
                 }
             }
             return ActionResult.PASS;
-        }
+    }
 
-        private Optional<BlockState> getStrippedState(BlockState state) {
-            return Optional.ofNullable(STRIPPED_BLOCKS.get(state.getBlock())).map((block) -> block.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
-        }
+    private Optional<BlockState> getStrippedState(BlockState state) {
+        return Optional.ofNullable(STRIPPED_BLOCKS.get(state.getBlock())).map((block) -> block.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
+    }
+
     public void inventoryTick(ItemStack itemstack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(itemstack, world, entity, slot, selected);
         if (selected) {
