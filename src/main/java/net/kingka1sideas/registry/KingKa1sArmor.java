@@ -22,8 +22,9 @@ public class KingKa1sArmor {
     public static final Item TRIMMED_DIAMOND_BOOTS = new ArmorItem(KingKa1sArmorMaterials.OBSIDIAN, EquipmentSlot.CHEST,(new Item.Settings()).group(ItemGroup.COMBAT).fireproof());
     public static final Item SHADOW_HOOD = new ArmorItem(KingKa1sArmorMaterials.SHADOW, EquipmentSlot.HEAD,(new Item.Settings().group(ItemGroup.COMBAT).fireproof()));
     public static final Item SHADOW_CLOAK = new ArmorItem(KingKa1sArmorMaterials.SHADOW, EquipmentSlot.CHEST,(new Item.Settings().group(ItemGroup.COMBAT).fireproof()));
-
-    public KingKa1sArmor(){}
+    public static final  Item ELYTRA_OBSDIAN_CHESTPLATE = new ElytraArmor(KingKa1sArmorMaterials.OBSIDIAN, EquipmentSlot.CHEST,(new Item.Settings()).group(ItemGroup.COMBAT).fireproof());
+    public static final Item ELYTRA_SHADOW_CLOACK = new ElytraArmor(KingKa1sArmorMaterials.SHADOW, EquipmentSlot.CHEST,(new Item.Settings()).group(ItemGroup.COMBAT).fireproof());
+    public static final Item ELYTRA_TRIMMED_DIAMOND_CHESTPLATE = new ElytraArmor(KingKa1sArmorMaterials.OBSIDIAN, EquipmentSlot.CHEST,(new Item.Settings()).group(ItemGroup.COMBAT).fireproof());
 
     public static void load(){
         Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "obsidian_helmet"), OBSIDIAN_HELMET);
@@ -36,8 +37,8 @@ public class KingKa1sArmor {
         Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "trimmed_diamond_chestplate"), TRIMMED_DIAMOND_CHESTPLATE);
         Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "trimmed_diamond_leggings"), TRIMMED_DIAMOND_LEGGINGS);
         Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "trimmed_diamond_boots"), TRIMMED_DIAMOND_BOOTS);
-        Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "elytra_obsidian_chestplate"), new ElytraArmor(KingKa1sArmorMaterials.OBSIDIAN, EquipmentSlot.CHEST,(new Item.Settings()).group(ItemGroup.COMBAT).fireproof()));
-        Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "elytra_trimmed_diamond_chestplate"), new ElytraArmor(KingKa1sArmorMaterials.OBSIDIAN, EquipmentSlot.CHEST,(new Item.Settings()).group(ItemGroup.COMBAT).fireproof()));
-        Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "elytra_shadow_cloak"), new ElytraArmor(KingKa1sArmorMaterials.SHADOW, EquipmentSlot.CHEST,(new Item.Settings()).group(ItemGroup.COMBAT).fireproof()));
+        Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "elytra_obsidian_chestplate"), ELYTRA_OBSDIAN_CHESTPLATE);
+        Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "elytra_trimmed_diamond_chestplate"), ELYTRA_TRIMMED_DIAMOND_CHESTPLATE);
+        Registry.register(Registry.ITEM,new Identifier(KingKa1sIdeasMod.MODID, "elytra_shadow_cloak"), ELYTRA_SHADOW_CLOACK);
     }
 }

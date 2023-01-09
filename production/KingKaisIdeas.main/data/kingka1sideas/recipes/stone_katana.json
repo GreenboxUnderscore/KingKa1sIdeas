@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " / ",
+    " / ",
+    " H "
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:cobblestone"
+    },
+    "H": {
+      "item": "kingka1sideas:leather_handle"
+    }
+  },
+  "result": {
+    "item": "kingka1sideas:stone_katana",
+    "count": 1
+  }
+}

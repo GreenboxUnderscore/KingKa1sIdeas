@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "kingka1sideas:netherite_scythe"
+  },
+  "addition": {
+    "item": "kingka1sideas:shadow_ingot"
+  },
+  "result": {
+    "item": "kingka1sideas:shadow_scythe"
+  }
+}

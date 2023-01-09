@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:netherite_pickaxe"
+  },
+  "addition": {
+    "item": "kingka1sideas:shadow_ingot"
+  },
+  "result": {
+    "item": "kingka1sideas:shadow_pickaxe"
+  }
+}
