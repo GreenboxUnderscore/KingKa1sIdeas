@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "kingka1sideas:item/obsidian_sword"
-  }
-}

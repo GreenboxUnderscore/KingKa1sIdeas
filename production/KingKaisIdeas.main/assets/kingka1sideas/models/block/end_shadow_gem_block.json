@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "kingka1sideas:block/end_shadow_gem_block"
-  }
-}
